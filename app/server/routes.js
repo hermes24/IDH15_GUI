@@ -1,7 +1,11 @@
 
 var CT = require('./modules/country-list');
+var IP = require('./modules/partner-list');
+var DI = require('./modules/discipline-list');
+var UL = require('./modules/unit-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
+var RM = require('./modules/request-manager');
 
 module.exports = function(app) {
 
@@ -49,6 +53,9 @@ module.exports = function(app) {
 				res.render('profile', {
 				title : 'Profile',
 				countries : CT,
+				partners : IP,
+				units : UL,
+				diciplines : DI,
 				udata : req.session.user
 			});
 		}
@@ -64,6 +71,9 @@ module.exports = function(app) {
 				res.render('editRange', {
 				title : 'Edit Range',
 				countries : CT,
+				partners : IP,
+				units : UL,
+				diciplines : DI,
 				udata : req.session.user
 			});
 		}
@@ -82,36 +92,56 @@ module.exports = function(app) {
 				res.render('home', {
 				title : 'Home',
 				countries : CT,
+				partners : IP,
+				units : UL,
+				diciplines : DI,
 				udata : req.session.user
 			});
 		}
 	});
 	
+//	app.post('/home', function(req, res){
+//		if (req.session.user == null){
+//			res.redirect('/');
+//		}	else{
+//			AM.updateAccount({
+//				id		: req.session.user._id,
+//				name	: req.body['name'],
+//				email	: req.body['email'],
+//				pass	: req.body['pass'],
+//				country	: req.body['country']
+//			}, function(e, o){
+//				if (e){
+//					res.status(400).send('error-updating-account');
+//				}	else{
+//					req.session.user = o;
+//			// update the user's login cookies if they exists //
+//					if (req.cookies.user != undefined && req.cookies.pass != undefined){
+//						res.cookie('user', o.user, { maxAge: 900000 });
+//						res.cookie('pass', o.pass, { maxAge: 900000 });	
+//					}
+//					res.status(200).send('ok');
+//				}
+//			});
+//		}
+//	});
+	
 	app.post('/home', function(req, res){
 		if (req.session.user == null){
 			res.redirect('/');
 		}	else{
-			AM.updateAccount({
-				id		: req.session.user._id,
-				name	: req.body['name'],
-				email	: req.body['email'],
-				pass	: req.body['pass'],
-				country	: req.body['country']
-			}, function(e, o){
-				if (e){
-					res.status(400).send('error-updating-account');
-				}	else{
-					req.session.user = o;
-			// update the user's login cookies if they exists //
-					if (req.cookies.user != undefined && req.cookies.pass != undefined){
-						res.cookie('user', o.user, { maxAge: 900000 });
-						res.cookie('pass', o.pass, { maxAge: 900000 });	
-					}
-					res.status(200).send('ok');
-				}
+			RM.sendRequest({
+				partner	: req.body['partner'],
+				number	: req.body['number'],
+				nameCustomer	: req.body['nameCustomer'],
+				discipline	: req.body['discipline'],
+				unit	: req.body['unit']
+			}, function(e){
+				console.log("Response in route :" + res.body)
 			});
 		}
 	});
+
 
 	app.post('/logout', function(req, res){
 		res.clearCookie('user');

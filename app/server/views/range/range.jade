@@ -12,36 +12,40 @@ input(type='hidden', value= user._id)#userId
 		include menuRange
 		hr
 		.form-group
-			label.control-label.col-sm-2 Installatie Partij
+			label.control-label.col-sm-2 Leverancier Verbinding
 			.col-sm-7
-				input.form-control#name-tf(type='text', name='name', value= user.name)
+				select.form-control#partner-list(name='partner')
+					each item in partners
+						option(value=item.short,selected=item.name)=item.name
 
 		.form-group
-			label.control-label.col-sm-2 KlantNummer
+			label.control-label.col-sm-2 Klant Nummer
 			.col-sm-7
-				input.form-control#email-tf(type='text', name='email', value= user.email)
+				input.form-control#email-tf(type='number', name='number', value= user.email)
 
 		.form-group
-			label.control-label.col-sm-2 KlantNaam
+			label.control-label.col-sm-2 Klant Naam
 			.col-sm-7
-				select.form-control#country-list(name='country')
-					each item in countries
-						option(selected=item.name == user.country)= item.name
+				input.form-control#name-tf(type='text', name='nameCustomer', value= user.name)
 		
 		h6#sub2
 		.form-group
 			label.control-label.col-sm-2 Discipline
 			.col-sm-7
-				input.form-control#user-tf(type='text', name='user', value= user.user).disabled
+				select.form-control#discipline-list(name='discipline')
+					each item in diciplines
+						option(value=item.short,selected=item.name)= item.name
 
 		.form-group
 			label.control-label.col-sm-2 Afdeling Aanvrager
 			.col-sm-7
-				input.form-control#pass-tf(type='password', name='pass', value='')
+				select.form-control#unit-list(name='unit')
+					each item in units
+						option(value=item.short,selected=item.name)= item.name
 
 		hr
 		.form-buttons
-			button(type='submit')#account-form-btn2.btn.btn-primary
+			button(type='submit')#send-form-request-btn1.btn.btn-primary
 		.clearfix
 
 // display form errors in a custom modal window //
