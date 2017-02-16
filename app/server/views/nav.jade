@@ -1,0 +1,21 @@
+nav.navbar-inverse.navbar-default.navbar-fixed-top
+	.container
+		.navbar-header
+			.navbar-brand IP Range 
+		ul.nav.navbar-nav.navbar-right
+			script.
+				function profile(){
+				window.location.href = '/profile'
+				}
+				function home(){
+				window.location.href = '/home'
+				}
+			li
+				.navbar-btn#btn-home.btn.btn-primary(type="button" onclick="home()")
+					| Home	
+			li
+				.navbar-btn#btn-profile.btn.btn-primary(type="button" onclick="profile()")
+					| Profiel
+			li
+				.navbar-btn#btn-logout.btn.btn-primary
+					| Log Uit
