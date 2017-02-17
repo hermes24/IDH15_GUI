@@ -1,7 +1,7 @@
 # IDH15_GUI
 WebInterface voor Apache Camel project
 
-Install Node.js & MongoDB.
+Install Node.js & MongoDB
 Install Git-bash
 Start mongoDB ( git-bash // blader naar mongoDB install folder -> bin -> mongod )
 Blader naar folder IDH15_GUI in git-bash
