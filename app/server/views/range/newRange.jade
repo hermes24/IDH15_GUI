@@ -1,33 +1,35 @@
-hr
-.form-group
-	label.control-label.col-sm-2 Installatie Partij
-	.col-sm-7
-			input.form-control#name-tf(type='text', name='name', value= user.name)
 
-.form-group
-	label.control-label.col-sm-2 KlantNummer
-	.col-sm-7
-		input.form-control#email-tf(type='text', name='email', value= user.email)
+// preset form values if we receive a userdata object //
+- user = typeof(udata) != 'undefined' ? udata : { }
+// store the userId on the client side in a hidden input field //
+input(type='hidden', value= user._id)#userId
 
-.form-group
-	label.control-label.col-sm-2 KlantNaam
-	.col-sm-7
-		select.form-control#country-list(name='country')
-			each item in countries
-				option(selected=item.name == user.country)= item.name
+#new-range-form-container.center-vertical
+	form(method="post")#new-range-form.form-horizontal.well
+		h2
+		h6#sub1 NEW RANGE 
 		
-h6#sub2
-.form-group
-	label.control-label.col-sm-2 Discipline
-	.col-sm-7
-		input.form-control#user-tf(type='text', name='user', value= user.user).disabled
+		include menuRange
+		hr
 
-.form-group
-	label.control-label.col-sm-2 Afdeling Aanvrager
-	.col-sm-7
-		input.form-control#pass-tf(type='password', name='pass', value='')
+		.form-group
+			label.control-label.col-sm-2 Range
+			.col-sm-7
+				input.form-control#new-range-tf(type='text', name='range')
+		
+		.form-group
+			label.control-label.col-sm-2 Leverancier Verbinding
+			.col-sm-7
+				select.form-control#couple-range-partner-list(name='partner')
+					each item in partners
+						option(value=item.name,selected=item.name)=item.name
 
-hr
-.form-buttons
-	button(type='submit')#account-form-btn2.btn.btn-primary
-.clearfix
+		hr
+		.form-buttons
+			button(type='submit')#add-customer-to-db-btn.btn.btn-success
+		.clearfix
+
+// display form errors in a custom modal window //
+
+include ../modals/form-errors
+include ../modals/form-success

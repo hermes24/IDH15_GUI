@@ -1,0 +1,33 @@
+hr
+.form-group
+	label.control-label.col-sm-2 Installatie Partij
+	.col-sm-7
+			input.form-control#name-tf(type='text', name='name', value= user.name)
+
+.form-group
+	label.control-label.col-sm-2 KlantNummer
+	.col-sm-7
+		input.form-control#new-range-customer-number-tf(type='text', name='email', value= user.email)
+
+.form-group
+	label.control-label.col-sm-2 KlantNaam
+	.col-sm-7
+		select.form-control#new-range-country-list(name='country')
+			each item in countries
+				option(selected=item.name == user.country)= item.name
+		
+h6#sub2
+.form-group
+	label.control-label.col-sm-2 Discipline
+	.col-sm-7
+		input.form-control#new-range-discipline-list(type='text', name='user', value= user.user).disabled
+
+.form-group
+	label.control-label.col-sm-2 Afdeling Aanvrager
+	.col-sm-7
+		input.form-control#new-range(type='password', name='pass', value='')
+
+hr
+.form-buttons
+	button(type='submit')#account-form-btn2.btn.btn-primary
+.clearfix

@@ -6,7 +6,6 @@ var errorHandler = require('errorhandler');
 var cookieParser = require('cookie-parser');
 var MongoStore = require('connect-mongo')(session);
 
-
 var app = express();
 
 app.locals.pretty = true;

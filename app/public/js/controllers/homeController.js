@@ -7,6 +7,17 @@ function HomeController() {
 		that.attemptLogout();
 	});
 
+	$('#couple-range-form .button-spoed').click(function(e) {
+		var span = $(this).find('span');
+		if (span.hasClass('glyphicon-unchecked')){
+			span.addClass('glyphicon-ok');
+			span.removeClass('glyphicon-unchecked');
+		}	else{
+			span.removeClass('glyphicon-ok');
+			span.addClass('glyphicon-unchecked');
+		}
+	});
+
 	this.attemptLogout = function() {
 		var that = this;
 		$.ajax({
@@ -24,6 +35,8 @@ function HomeController() {
 					}
 				});
 	}
+
+
 	
 	this.showLockedAlert = function(msg) {
 		$('.modal-alert').modal({

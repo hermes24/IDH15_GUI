@@ -43,6 +43,12 @@ function AccountValidator()
 
 }
 
+AccountValidator.prototype.showInvalidCustomerNumber = function()
+{
+	this.controlGroups[1].addClass('error');
+	this.showErrors(['That CustomerNumber is already in use.']);
+}
+
 AccountValidator.prototype.showInvalidEmail = function()
 {
 	this.controlGroups[1].addClass('error');

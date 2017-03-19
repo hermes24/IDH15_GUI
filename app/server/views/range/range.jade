@@ -4,44 +4,42 @@
 // store the userId on the client side in a hidden input field //
 input(type='hidden', value= user._id)#userId
 
-#range-form-container.center-vertical
-	form(method="post")#range-form.form-horizontal.well
+#couple-range-form-container.center-vertical
+	form(method="post")#couple-range-form.form-horizontal.well
 		h2
 		h6#sub1 NEW VENSTER 
 		
 		include menuRange
 		hr
-		.form-group
-			label.control-label.col-sm-2 Leverancier Verbinding
-			.col-sm-7
-				select.form-control#partner-list(name='partner')
-					each item in partners
-						option(value=item.short,selected=item.name)=item.name
 
 		.form-group
-			label.control-label.col-sm-2 Klant Nummer
+			label.control-label.col-sm-2 Klant
 			.col-sm-7
-				input.form-control#email-tf(type='number', name='number', value= user.email)
+				select.form-control#couple-range-customer-list(name='customer')
+					each item in customers
+						option(value=item.id,selected=item.id)=item.name
 
 		.form-group
-			label.control-label.col-sm-2 Klant Naam
+			label.control-label.col-sm-2 Range
 			.col-sm-7
-				input.form-control#name-tf(type='text', name='nameCustomer', value= user.name)
+				select.form-control#couple-range-range-list(name='range')
+					each item in ranges
+						option(value=item.id,selected=item.id)=item.partnerAndRange
 		
-		h6#sub2
-		.form-group
-			label.control-label.col-sm-2 Discipline
-			.col-sm-7
-				select.form-control#discipline-list(name='discipline')
-					each item in diciplines
-						option(value=item.short,selected=item.name)= item.name
-
 		.form-group
 			label.control-label.col-sm-2 Afdeling Aanvrager
 			.col-sm-7
-				select.form-control#unit-list(name='unit')
+				select.form-control#couple-range-unit-list(name='unit')
 					each item in units
 						option(value=item.short,selected=item.name)= item.name
+		
+		.form-group
+			label.control-label.col-sm-2 Afdeling Aanvrager
+			.col-sm-7
+				.controls
+				button(type='button').btn.btn-default.button-spoed
+					span.glyphicon.glyphicon-unchecked.button-rememember-me-glyph
+					| Ja
 
 		hr
 		.form-buttons
@@ -51,3 +49,4 @@ input(type='hidden', value= user._id)#userId
 // display form errors in a custom modal window //
 
 include ../modals/form-errors
+include ../modals/form-success

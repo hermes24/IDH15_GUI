@@ -1,0 +1,46 @@
+
+// preset form values if we receive a userdata object //
+- user = typeof(udata) != 'undefined' ? udata : { }
+// store the userId on the client side in a hidden input field //
+input(type='hidden', value= user._id)#userId
+
+#new-customer-form-container.center-vertical
+	form(method="post")#new-customer-form.form-horizontal.well
+		h2
+		h6#sub1 NEW CUSTOMER 
+		
+		include menuRange
+		hr
+
+		.form-group
+			label.control-label.col-sm-2 Klant Nummer
+			.col-sm-7
+				input.form-control#new-customer-customer-number-tf(type='number', name='number')
+
+		.form-group
+			label.control-label.col-sm-2 Klant Naam
+			.col-sm-7
+				input.form-control#new-customer-customer-name-tf(type='text', name='nameCustomer')
+
+		.form-group
+			label.control-label.col-sm-2 Cluster
+			.col-sm-7
+				input.form-control#new-customer-cluster-tf(type='text', name='cluster')
+		
+		h6#sub2
+		.form-group
+			label.control-label.col-sm-2 Discipline
+			.col-sm-7
+				select.form-control#discipline-list(name='discipline')
+					each item in diciplines
+						option(value=item.name,selected=item.name)= item.name
+
+		hr
+		.form-buttons
+			button(type='submit')#add-customer-to-db-btn.btn.btn-success
+		.clearfix
+
+// display form errors in a custom modal window //
+
+include ../modals/form-errors
+include ../modals/form-success

@@ -4,10 +4,10 @@
 // store the userId on the client side in a hidden input field //
 input(type='hidden', value= user._id)#userId
 
-#edit-range-form-container.center-vertical
-	form(method="post")#edit-range-form.form-horizontal.well
+#range-management-form-container.center-vertical
+	form(method="post")#range-form.form-horizontal.well
 		h2
-		h6#sub1 CHANGE VENSTER 
+		h6#sub1 RANGEMANAGEMENT
 		
 		include menuRange
 		hr
@@ -17,19 +17,23 @@ input(type='hidden', value= user._id)#userId
 			thead
 				tr
 					th Range
-					th Klantnummer
-					th Klantnaam
 					th Partner
 					th Opties
 
 			each item in posts
 				tr
 					td #{item.range}
-					td #{item.customerNumber}
-					td #{item.customer}
 					td #{item.partner}
-					th 
-							button(type='button' onclick='disconnect(\'' + item.customerid + '\')')#remove-range-edit-customer-button.btn.btn-warning Ontkoppel
+					td
+						button(type='button' onclick='removeRange(\'' + item.id + '\')')#remove-range-edit-range-button.btn.btn-danger Verwijder
+
+		hr
+		.form-buttons
+			button(type='button' onclick="newRange()")#add-range-btn.btn.btn-primary
+			button(type='submit')#send-form-request-btn1.btn.btn-primary
+		.clearfix
+
+
 
 // display form errors in a custom modal window //
 
